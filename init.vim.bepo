@@ -10,8 +10,8 @@ onoremap aÉ aW
 onoremap ié iw
 onoremap iÉ iW
 " Pour faciliter les manipulations de fenêtres, on utilise {W} comme un Ctrl+W :
-noremap w <C-w>
-noremap W <C-w><C-w>
+noremap à <C-w>
+noremap À <C-w><C-w>
  
 " [HJKL] -> {CTSR}
 " ————————————————
@@ -70,12 +70,25 @@ noremap » >
  
 " Remaper la gestion des fenêtres
 " ———————————————————————————————
-noremap wt <C-w>j
-noremap ws <C-w>k
-noremap wc <C-w>h
-noremap wr <C-w>l
-noremap wd <C-w>c
-noremap wo <C-w>s
-noremap wp <C-w>o
-noremap w<SPACE> :split<CR>
-noremap w<CR> :vsplit<CR>
+noremap àt <C-w>j
+noremap às <C-w>k
+noremap àc <C-w>h
+noremap àr <C-w>l
+noremap àd <C-w>c
+noremap ào <C-w>s
+noremap àp <C-w>o
+noremap à<SPACE> :split<CR>
+noremap à<CR> :vsplit<CR>
+
+" NERDTree mappings
+let NERDTreeMapOpenInTab='é'
+let NERDTreeMapOpenInTabSilent='É'
+let NERDTreeMapOpenVSplit='p'
+let NERDTreeMapPreviewVSplit='gp'
+let NERDTreeMapJumpRoot='À' 
+let NERDTreeMapJumpParent='à'
+let NERDTreeMapChangeRoot='y'
+let NERDTreeMapRefresh='x'
+let NERDTreeMapRefreshRoot='X'
+let NERDTreeMenuDown='t'
+let NERDTreeMenuUp='s'
