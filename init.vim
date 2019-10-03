@@ -57,7 +57,7 @@ set dir=/tmp
 " => NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Changes NerdTree Toggle to Ctrl + n
-map <C-n> :NERDTreeToggle<CR>
+map àn :NERDTreeToggle<CR>
 "autocmd VimEnter * NERDTree "Toggles Nerdtree on vim open
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
