@@ -18,10 +18,12 @@ Plug 'tpope/vim-fugitive' "git tools
 Plug 'jiangmiao/auto-pairs' "autocomplete brackets
 Plug 'mitermayer/vim-prettier'
 Plug 'scrooloose/nerdcommenter' "Comment toggle
+"Plug 'dense-analysis/ale' "ES linter -- replaced with coc-tsserver
 
 " Language Syntax Support
 Plug 'pangloss/vim-javascript' "JS highlighting
 Plug 'mxw/vim-jsx' "JSX syntax highlighting
+Plug 'leafgarland/typescript-vim' "TS syntax highlighting
 
 " tools
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -42,6 +44,9 @@ let maplocalleader="\<space>"
 syntax enable 
 colors molokai
 
+let g:airline_powerline_fonts = 1
+let airline#extensions#coc#error_symbol = 'Error:'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Core Functionality
  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,12 +62,27 @@ set dir=/tmp
 " => NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Changes NerdTree Toggle to Ctrl + n
-map àn :NERDTreeToggle<CR>
+"map àn :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 "autocmd VimEnter * NERDTree "Toggles Nerdtree on vim open
+
+" Use NERDTree when opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ALE (ESlinter)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:ale_sign_error = '❌'
+"let g:ale_sign_warning = '⚠️'
+"let g:airline#extensions#ale#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Conquer of Completion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" jsonc (commented json) syntax highlighting
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -73,6 +93,14 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+" use <tab> and <shift-tab> for navigating forward & backward within
+" completion items
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" use <cr> for validating the selected completion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -147,6 +175,7 @@ call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('ts', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 if !empty(system("setxkbmap -print|grep bepo"))
@@ -158,4 +187,3 @@ else
   map <C-h> <C-W>h
   map <C-l> <C-W>l
 endif
-
