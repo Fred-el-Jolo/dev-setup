@@ -1,5 +1,11 @@
-alias ll='ls -la'
-alias apt='sudo apt'
-alias apt-get='sudo apt-get'
-alias az='setxkbmap fr bepo'
-alias bé='setxkbmap fr'
+alias gst="git status"
+alias gcb="git checkout -b"
+alias gco="git checkout"
+alias gaa="git add --all"
+alias ga="git add"
+alias gcmsg='git commit -m'
+alias gd='git diff'
+alias gp='git push'
+alias gl='git pull'
+alias gr='git reset'
+alias grh='git reset --hard'
