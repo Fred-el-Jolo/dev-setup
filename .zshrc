@@ -38,7 +38,7 @@ eval `dircolors ~/.dir_colors/dircolors`
 
 source ~/.config/fzf/.fzfrc
 
-fpath=~/.zsh/zsh-completions/src $fpath)
+fpath=(~/.zsh/zsh-completions/src $fpath)
 
 compinit
 
