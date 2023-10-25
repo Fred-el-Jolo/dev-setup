@@ -38,12 +38,11 @@ eval `dircolors ~/.dir_colors/dircolors`
 
 source ~/.config/fzf/.fzfrc
 
-fpath=(~/.config/completions $fpath)
-fpath=(/home/frederic/tools/other/zsh-completions/src $fpath)
+fpath=~/.zsh/zsh-completions/src $fpath)
 
 compinit
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /home/frederic/tools/other/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(starship init zsh)"
