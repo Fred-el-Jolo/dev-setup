@@ -22,3 +22,5 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 sudo apt install zsh-syntax-highlighting
 
 curl -sS https://starship.rs/install.sh | sh
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | sh
